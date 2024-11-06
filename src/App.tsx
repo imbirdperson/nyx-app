@@ -9,7 +9,7 @@ function App() {
   return (
     <main className="container">
         <LeftPanel>
-        <div className="side-panel-content">
+        <div className="left-panel-content">
           <h3>Today</h3>
           <ul>
             <li>Resizable CSS Grid Component</li>
@@ -17,7 +17,6 @@ function App() {
             <li>SurrealDB Rust Database</li>
           </ul>
         </div>
-        <div className="drag-handle"/>
         </LeftPanel>
       <MainWindow>
         Main event

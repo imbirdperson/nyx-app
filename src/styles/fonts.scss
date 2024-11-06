@@ -1,0 +1,131 @@
+@font-face {
+    font-family: 'GeistMono-Black'; // Your custom font name
+    src: url('../assets/fonts/GeistMono-Black.woff2') format('woff2'),;  // Path to your font file
+    font-weight: normal;                                    // Specify the font weight
+    font-style: normal;                                     // Specify the font style
+}
+
+@font-face {
+    font-family: 'GeistMono-Bold'; // Your custom font name
+    src: url('../assets/fonts/GeistMono-Bold.woff2') format('woff2'),;  // Path to your font file
+    font-weight: normal;                                    // Specify the font weight
+    font-style: bold;                                     // Specify the font style
+}
+
+@font-face {
+    font-family: 'GeistMono-SemiBold'; // Your custom font name
+    src: url('../assets/fonts/GeistMono-SemiBold.woff2') format('woff2'),;  // Path to your font file
+    font-weight: normal;                                    // Specify the font weight
+    font-style: bold;                                     // Specify the font style
+}
+
+@font-face {
+    font-family: 'GeistMono-Medium'; // Your custom font name
+    src: url('../assets/fonts/GeistMono-Medium.woff2') format('woff2'),;  // Path to your font file
+    font-weight: normal;                                    // Specify the font weight
+    font-style: bold;                                     // Specify the font style
+}
+
+@font-face {
+    font-family: 'GeistMono-Regular'; // Your custom font name
+    src: url('../assets/fonts/GeistMono-Regular.woff2') format('woff2'),;  // Path to your font file
+    font-weight: normal;                                    // Specify the font weight
+    font-style: normal;                                     // Specify the font style
+}
+
+@font-face {
+    font-family: 'GeistMono-Light'; // Your custom font name
+    src: url('../assets/fonts/GeistMono-Light.woff2') format('woff2'),;  // Path to your font file
+    font-weight: normal;                                    // Specify the font weight
+    font-style: normal;                                     // Specify the font style
+}
+
+@font-face {
+    font-family: 'GeistMono-Thin'; // Your custom font name
+    src: url('../assets/fonts/GeistMono-Thin.woff2') format('woff2'),;  // Path to your font file
+    font-weight: normal;                                    // Specify the font weight
+    font-style: normal;                                     // Specify the font style
+}
+
+@font-face {
+    font-family: 'GeistMono-UltraLight'; // Your custom font name
+    src: url('../assets/fonts/GeistMono-UltraLight.woff2') format('woff2'),;  // Path to your font file
+    font-weight: normal;                                    // Specify the font weight
+    font-style: normal;                                     // Specify the font style
+}
+
+
+@font-face {
+    font-family: 'Geist-Black'; // Your custom font name
+    src: url('../assets/fonts/Geist-Black.woff2') format('woff2'),;  // Path to your font file
+    font-weight: normal;                                    // Specify the font weight
+    font-style: normal;                                     // Specify the font style
+}
+
+@font-face {
+    font-family: 'Geist-Bold'; // Your custom font name
+    src: url('../assets/fonts/Geist-Bold.woff2') format('woff2'),;  // Path to your font file
+    font-weight: normal;                                    // Specify the font weight
+    font-style: bold;                                     // Specify the font style
+}
+
+@font-face {
+    font-family: 'Geist-SemiBold'; // Your custom font name
+    src: url('../assets/fonts/Geist-SemiBold.woff2') format('woff2'),;  // Path to your font file
+    font-weight: normal;                                    // Specify the font weight
+    font-style: bold;                                     // Specify the font style
+}
+
+@font-face {
+    font-family: 'Geist-Medium'; // Your custom font name
+    src: url('../assets/fonts/Geist-Medium.woff2') format('woff2'),;  // Path to your font file
+    font-weight: normal;                                    // Specify the font weight
+    font-style: bold;                                     // Specify the font style
+}
+
+@font-face {
+    font-family: 'Geist-Regular'; // Your custom font name
+    src: url('../assets/fonts/Geist-Regular.woff2') format('woff2'),;  // Path to your font file
+    font-weight: normal;                                    // Specify the font weight
+    font-style: normal;                                     // Specify the font style
+}
+
+@font-face {
+    font-family: 'Geist-Thin'; // Your custom font name
+    src: url('../assets/fonts/Geist-Thin.woff2') format('woff2'),;  // Path to your font file
+    font-weight: normal;                                    // Specify the font weight
+    font-style: normal;                                     // Specify the font style
+}
+
+@font-face {
+    font-family: 'Geist-Light'; // Your custom font name
+    src: url('../assets/fonts/Geist-Light.woff2') format('woff2'),;  // Path to your font file
+    font-weight: normal;                                    // Specify the font weight
+    font-style: normal;                                     // Specify the font style
+}
+
+@font-face {
+    font-family: 'Geist-UltraLight'; // Your custom font name
+    src: url('../assets/fonts/Geist-ExtraLight.woff2') format('woff2'),;  // Path to your font file
+    font-weight: normal;                                    // Specify the font weight
+    font-style: normal;                                     // Specify the font style
+}
+
+
+$geist-mono-black : "GeistMono-Black";
+$geist-mono-bold : "GeistMono-Bold";
+$geist-mono-semibold : "GeistMono-SemiBold";
+$geist-mono-medium : "GeistMono-Medium";
+$geist-mono-regular : "GeistMono-Regular";
+$geist-mono-light : "GeistMono-Light";
+$geist-mono-thin : "GeistMono-Thin";
+$geist-mono-ultrathin : "GeistMono-UltraLight";
+
+$geist-black : "Geist-Black";
+$geist-bold : "Geist-Bold";
+$geist-semibold : "Geist-SemiBold";
+$geist-medium : "Geist-Medium";
+$geist-regular : "Geist-Regular";
+$geist-light : "Geist-Light";
+$geist-thin : "Geist-Thin";
+$geist-ultrathin : "Geist-UltraLight";

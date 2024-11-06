@@ -3,25 +3,38 @@
     height: 100vh;
     width: 100vw;
     background-color: #2d2d2d;
+    font-size: 14px;
+    overflow: hidden;
+
 }
 .main-window-wrapper{
-    background-color: black;
+    background-color: #101010;
     flex-grow: 1;
-  padding: 20px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
 .left-pannel-wrapper{
     width: 250px;
     height: 100%;
     background-color: #161616;
-    overflow-y: auto;
-    padding: 20px;
+    overflow: hidden;
     box-sizing: border-box;
     position: relative;
+    transition: transform 1s ease;
+    // position: fixed;
+
+    &.open{
+        width: 250px;
+    }
+
+    &.collapsed{
+        width: 0px;
+    }
+    
 
     .drag-handle {
         width: 10px;
@@ -31,6 +44,31 @@
         right: 0;
         height: 100%;
         background-color: #161616; /* Customize the handle color */
+
+        &:hover{
+            .drag-handle-visible{
+                background-color: #292929;
+            }
+        }
+
+        .drag-handle-visible{
+            position: absolute;
+            top: 0;
+            right: 0;
+            right: 0;
+            height:100%;
+            width: 2px;
+
+            &:hover{
+                background-color: #292929;
+            }
+        }
+
+      }
+
+      .left-pannel-content{
+        overflow: hidden;
+        padding: 20px;
       }
 }
 
@@ -40,3 +78,9 @@
 -ms-user-select: none;     /* Internet Explorer */
 user-select: none;         /* Standard */
 }
+
+body.resizing {
+    cursor: ew-resize; /* Force the cursor to stay as ew-resize */
+}
+
+

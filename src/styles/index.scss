@@ -1,6 +1,7 @@
 // @import "panels.scss";
 @use "./colors.scss" as color;
 @use "./panels.scss";
+@use "fonts.scss" as font;
 
 * {
     padding: 0px;
@@ -8,7 +9,27 @@
 }
 
 body{
-    background-color: black;
+    background-color: #0F0F0F;
     color:white;
     overflow: hidden;
+    font-family: font.$geist-light;
+    font-weight: 500;
+
+    -webkit-user-select: none; /* Chrome, Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer */
+    user-select: none;         /* Standard */
+    // font-style: bold;
+}
+
+.icon-button {
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Show pointer cursor on hover */
+    padding: 4px;
+    border-radius: 4px;
+
+    &:hover{
+        background-color: #282828;
+    }
 }
