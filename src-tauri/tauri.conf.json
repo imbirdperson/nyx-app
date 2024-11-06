@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "nyx-app",
+  "productName": "Nyx",
   "version": "0.1.0",
   "identifier": "com.nyx-app.app",
   "build": {
@@ -12,9 +12,11 @@
   "app": {
     "windows": [
       {
-        "title": "nyx-app",
+        "title": "Nyx",
         "width": 800,
-        "height": 600
+        "height": 600,
+        "maximized": true,
+        "label": "main"
       }
     ],
     "security": {

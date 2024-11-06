@@ -1,0 +1,14 @@
+// @import "panels.scss";
+@use "./colors.scss" as color;
+@use "./panels.scss";
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    background-color: black;
+    color:white;
+    overflow: hidden;
+}

@@ -1,0 +1,42 @@
+.container{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #2d2d2d;
+}
+.main-window-wrapper{
+    background-color: black;
+    flex-grow: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.left-pannel-wrapper{
+    width: 250px;
+    height: 100%;
+    background-color: #161616;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+
+    .drag-handle {
+        width: 10px;
+        cursor: ew-resize;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        background-color: #161616; /* Customize the handle color */
+      }
+}
+
+.no-select {
+-webkit-user-select: none; /* Chrome, Safari */
+-moz-user-select: none;    /* Firefox */
+-ms-user-select: none;     /* Internet Explorer */
+user-select: none;         /* Standard */
+}
