@@ -1,5 +1,43 @@
-$primary-red: red;
+// Main Background and Text
+$main-background: #101010; // Dark background for the main interface
+$text-color: #FFFFFF;      // Primary text color (white)
 
-.test{
-    background-color: pink;
-}
+// Accent and Highlight Colors
+$accent-color: #FF6F61;    // Accent color for buttons, icons, or highlights
+$highlight-color: #3A86FF; // Highlight color for selected items or links
+
+// Borders and Dividers
+$border-color: #3C3C47;    // Subtle border color for panels and dividers
+$divider-color: #2A2A36;   // Divider color to separate sections
+
+// Secondary Backgrounds
+$secondary-background: #161616; // Secondary background for panels or sidebars
+$secondary-background-hover-medium: #292929;
+$tertiary-background: #23232E;  // Tertiary background for subtle contrast
+
+// Button Colors
+$button-background: #3A86FF;    // Background color for primary buttons
+$button-text-color: #FFFFFF;    // Text color for buttons
+$button-hover: #3366CC;         // Hover color for buttons
+
+// Input Fields
+$input-background: #2A2A36;     // Background color for input fields
+$input-border: #3C3C47;         // Border color for input fields
+$input-text-color: #FFFFFF;     // Text color for input fields
+
+// Shadows
+$box-shadow-color: rgba(0, 0, 0, 0.5); // Box shadow for elements
+
+// Notifications and Alerts
+$success-color: #4CAF50;        // Success color for positive messages
+$error-color: #F44336;          // Error color for error messages
+$warning-color: #FFC107;        // Warning color for alerts
+
+// Selection Colors
+$selection-background: #FF6F61; // Background color for selected text or items
+$selection-text: #FFFFFF;       // Text color for selected text
+
+// Scrollbar Colors
+$scrollbar-track: #2A2A36;      // Track color for the scrollbar
+$scrollbar-thumb: #3C3C47;      // Thumb color for the scrollbar
+$scrollbar-thumb-hover: #5C5C6F; // Hover color for the scrollbar thumb

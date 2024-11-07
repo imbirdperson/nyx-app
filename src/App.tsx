@@ -1,14 +1,13 @@
-import { useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 
-import MainWindow from "./components/panels/MainWindow";
+import MainWindow from "./components/panels/MainPanel";
 import LeftPanel from "./components/panels/LeftPanel";
 
 function App() {
 
   return (
     <main className="container">
-        <LeftPanel>
+      <LeftPanel>
         <div className="left-panel-content">
           <h3>Today</h3>
           <ul>
@@ -17,7 +16,7 @@ function App() {
             <li>SurrealDB Rust Database</li>
           </ul>
         </div>
-        </LeftPanel>
+      </LeftPanel>
       <MainWindow>
         Main event
       </MainWindow>

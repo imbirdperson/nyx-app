@@ -1,7 +1,8 @@
-// @import "panels.scss";
+@use "./globals.scss" as globals;
 @use "./colors.scss" as color;
 @use "./panels.scss";
-@use "fonts.scss" as font;
+@use "./fonts.scss" as font;
+@use "./elements.scss";
 
 * {
     padding: 0px;
@@ -20,16 +21,4 @@ body{
     -ms-user-select: none;     /* Internet Explorer */
     user-select: none;         /* Standard */
     // font-style: bold;
-}
-
-.icon-button {
-    background: none; /* Remove default button background */
-    border: none; /* Remove default button border */
-    cursor: pointer; /* Show pointer cursor on hover */
-    padding: 4px;
-    border-radius: 4px;
-
-    &:hover{
-        background-color: #282828;
-    }
 }

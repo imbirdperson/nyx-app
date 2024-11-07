@@ -1,0 +1,14 @@
+@use "globals.scss" as globals;
+@use "colors.scss" as color;
+
+.icon-button {
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Show pointer cursor on hover */
+    padding: globals.$button-padding;
+    border-radius: globals.$button-raidus;
+
+    &:hover{
+        background-color: color.$secondary-background-hover-medium;
+    }
+}

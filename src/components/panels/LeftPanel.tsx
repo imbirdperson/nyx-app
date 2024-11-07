@@ -1,21 +1,21 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode} from "react";
 import { Sidebar } from '@geist-ui/icons';
+import { useLeftPanelStore } from "../../store/LeftPanelStore";
+
+
 type LeftPanelProps = {
     children: ReactNode;
 }
 
 const LeftPanel: React.FC<LeftPanelProps> = ({children}) => {
-    const [sidePanelWidth, setSidePanelWidth] = useState<number>(250);
-    const [isDragging, setIsDragging] = useState<boolean>(false);
-    const [isVisible, setIsVisible] = useState(true);
+    const {
+        leftPanelWidth,
+        isDragging,
+        setLeftPanelWidth,
+        setIsDragging,
+      } = useLeftPanelStore();
 
 
-    const handleClick = () => {
-        console.log("Sidebar toggle clicked!");
-        setSidePanelWidth(0);
-        setIsVisible(!isVisible);
-        // Add additional logic to handle the sidebar visibility here
-    };
 
     const handleMouseDown = () => {
         setIsDragging(true);
@@ -27,9 +27,9 @@ const LeftPanel: React.FC<LeftPanelProps> = ({children}) => {
         if (isDragging) {
             const newWidth = Math.max(0, e.clientX); // Ensure the width does not go below 0
         if (newWidth < 120) {
-            setSidePanelWidth(0); // Hide the side panel if the width is less than 150px
+            setLeftPanelWidth(0); // Hide the side panel if the width is less than 150px
         } else {
-            setSidePanelWidth(newWidth); // Otherwise, set the new width
+            setLeftPanelWidth(newWidth); // Otherwise, set the new width
         }
         }
     };
@@ -53,13 +53,12 @@ const LeftPanel: React.FC<LeftPanelProps> = ({children}) => {
 
     return (
         <div className={`left-pannel-wrapper`}
-        style={{ width: sidePanelWidth ? `${sidePanelWidth}px` : '0'}}
-        >
+        style={{ width: leftPanelWidth ? `${leftPanelWidth}px` : '0'}}>
             <div className="left-pannel-content">
-
-                <SideBarToggle onClick={handleClick}/>
+                <LeftPanelToggleButton/>
                 {children}
             </div>
+
         <div className="drag-handle" onMouseDown={handleMouseDown}>
             <div className="drag-handle-visible"/>
         </div>
@@ -69,14 +68,35 @@ const LeftPanel: React.FC<LeftPanelProps> = ({children}) => {
 
 export default LeftPanel;
 
-interface SideBarToggleProps {
-    onClick?: () => void; // Define the type for the click prop
-  }
 
-const SideBarToggle: React.FC<SideBarToggleProps> = ({onClick}) => {
+interface LeftPanelFnButtonsProps{
+
+}
+
+const LeftPanelFnButton: React.FC<LeftPanelFnButtonsProps> = () => {
+    return (
+        <></>
+    );
+};
+
+
+interface LeftPanelToggleProps {
+}
+
+const LeftPanelToggleButton: React.FC<LeftPanelToggleProps> = () => {
+
+    const {
+        toggleLeftPanel,
+      } = useLeftPanelStore();
+
+    const handleClick = () => {
+        console.log("Sidebar toggle clicked!");
+        toggleLeftPanel();
+    };
+
     return (
       <div className="sidebar">
-        <button className="icon-button" onClick={onClick}>
+        <button className="icon-button" onClick={handleClick}>
             <Sidebar color="#fff" size={17}/>
         </button>
       </div>

@@ -1,40 +1,31 @@
+@use "globals.scss" as globals;
+@use "colors.scss" as color;
+
 .container{
     display: flex;
     height: 100vh;
     width: 100vw;
-    background-color: #2d2d2d;
-    font-size: 14px;
+    background-color: color.$main-background;
+    font-size: globals.$font-size-regular;
     overflow: hidden;
-
 }
+
+// main content window
 .main-window-wrapper{
-    background-color: #101010;
+    background-color: color.$main-background;
     flex-grow: 1;
-    padding: 20px;
     box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
 }
+
 .left-pannel-wrapper{
-    width: 250px;
+    width: globals.$panel-width;
+    max-width: globals.$panel-max-width;
     height: 100%;
-    background-color: #161616;
+    background-color: color.$secondary-background;
     overflow: hidden;
     box-sizing: border-box;
     position: relative;
     transition: transform 1s ease;
-    // position: fixed;
-
-    &.open{
-        width: 250px;
-    }
-
-    &.collapsed{
-        width: 0px;
-    }
-    
 
     .drag-handle {
         width: 10px;
@@ -43,11 +34,11 @@
         top: 0;
         right: 0;
         height: 100%;
-        background-color: #161616; /* Customize the handle color */
+        background-color: color.$secondary-background;
 
         &:hover{
             .drag-handle-visible{
-                background-color: #292929;
+                background-color: color.$secondary-background-hover-medium;
             }
         }
 
@@ -60,15 +51,14 @@
             width: 2px;
 
             &:hover{
-                background-color: #292929;
+                background-color: color.$secondary-background-hover-medium;
             }
         }
-
       }
 
       .left-pannel-content{
         overflow: hidden;
-        padding: 20px;
+        // padding: 20px;
       }
 }
 
