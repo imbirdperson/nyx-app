@@ -10,6 +10,8 @@
     "frontendDist": "../dist"
   },
   "app": {
+    "withGlobalTauri": true,
+    "macOSPrivateApi": true,
     "windows": [
       {
         "title": "Nyx",
@@ -20,7 +22,12 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": {
+        "default-src": "'self' webkit-pdfjs-viewer: asset: http://asset.localhost blob: data: filesystem: http: https: tauri:",
+				"connect-src": "'self' ipc: http://ipc.localhost ws: wss: http: https: tauri:",
+				"img-src": "'self' asset: http://asset.localhost blob: data: filesystem: http: https: tauri:",
+				"style-src": "'self' 'unsafe-inline' http: https: tauri:"
+      }
     }
   },
   "bundle": {

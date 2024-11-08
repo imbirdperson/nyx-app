@@ -1,14 +1,89 @@
 @use "globals.scss" as globals;
 @use "colors.scss" as color;
 
-.icon-button {
-    background: none; /* Remove default button background */
-    border: none; /* Remove default button border */
-    cursor: pointer; /* Show pointer cursor on hover */
-    padding: globals.$button-padding;
-    border-radius: globals.$button-raidus;
+// .icon-button-wrapper{
+//     position: relative;
+//     display: inline-block;
+//     // width: 0px;
+//     .icon-button {
+//         background: none; /* Remove default button background */
+//         border: none; /* Remove default button border */
+//         cursor: pointer; /* Show pointer cursor on hover */
+//         padding: globals.$button-padding;
+//         border-radius: globals.$button-raidus;
+//         margin: 0px 2px;
 
-    &:hover{
-        background-color: color.$secondary-background-hover-medium;
+//         &:hover{
+//             background-color: color.$secondary-background-hover-medium;
+//         }
+//     }
+
+//     .tooltip{
+//         position: absolute; /* Position the tooltip relative to the button */
+//         z-index: 1000;
+//         width: 120px;
+//         background-color: black;
+//         color: #fff;
+//         text-align: center;
+//         border-radius: 6px;
+//         padding: 5px 0;
+
+//         /* Position the tooltip */
+//         position: absolute;
+//     }
+     
+
+// }
+
+.icon-button-wrapper{
+    position: relative;
+    display: inline-block;
+    // width: 0px;
+    .icon-button {
+        background: none; /* Remove default button background */
+        border: none; /* Remove default button border */
+        cursor: pointer; /* Show pointer cursor on hover */
+        padding: globals.$button-padding;
+        border-radius: globals.$button-raidus;
+        margin: 0px 2px;
+
+        &:hover{
+            background-color: color.$secondary-background-hover-medium;
+        }
+        &:active + .tooltip {
+            opacity: 0;
+            visibility: hidden;
+        }
     }
+
+    .tooltip{
+        position: fixed;
+        z-index: 9999;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        margin-top: 8px;
+        padding: 5px 10px;
+        font-size: 12px;
+        white-space: nowrap;
+        width: max-content;
+        pointer-events: none;
+
+        // Transition
+        opacity: 0;
+        visibility: hidden;  // Use visibility instead of display
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+        transform: translateY(5px);  // Start slightly below
+        transition: all 0.2s ease; 
+        
+    }
+
+    &:hover .tooltip{
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0); 
+    }
+     
+
 }

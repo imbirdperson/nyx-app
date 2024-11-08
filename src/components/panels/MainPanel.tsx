@@ -1,6 +1,8 @@
 import React, { ReactNode } from "react";
 import { Sidebar } from '@geist-ui/icons';
 import { useLeftPanelStore } from "../../store/LeftPanelStore";
+import IconButton from "../elements/IconButton";
+import { ICON_BUTTON_SIZE } from "../Constants";
 
 type MainPanelProps = {
     children: ReactNode;
@@ -29,10 +31,8 @@ interface SideBarToggleProps {
 
 const SideBarToggle: React.FC<SideBarToggleProps> = ({onClick}) => {
     return (
-      <div className="sidebar">
-        <button className="icon-button" onClick={onClick}>
-            <Sidebar color="#fff" size={17}/>
-        </button>
-      </div>
+        <IconButton onClick={onClick} tooltipText="Sidebar">
+            <Sidebar color="#fff" size={ICON_BUTTON_SIZE}/>
+        </IconButton>
     );
   };

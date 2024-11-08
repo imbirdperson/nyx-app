@@ -1,5 +1,6 @@
 @use "globals.scss" as globals;
 @use "colors.scss" as color;
+@use "fonts.scss" as font;
 
 .container{
     display: flex;
@@ -8,6 +9,7 @@
     background-color: color.$main-background;
     font-size: globals.$font-size-regular;
     overflow: hidden;
+    position: relative;
 }
 
 // main content window
@@ -15,26 +17,40 @@
     background-color: color.$main-background;
     flex-grow: 1;
     box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
 }
 
-.left-pannel-wrapper{
+.left-panel-wrapper{
     width: globals.$panel-width;
     max-width: globals.$panel-max-width;
     height: 100%;
     background-color: color.$secondary-background;
-    overflow: hidden;
+    overflow: visible;
     box-sizing: border-box;
     position: relative;
-    transition: transform 1s ease;
+    transition: transform 0.1s ease-in; 
+    z-index: 2;
+
+    // Add transform when width is 0
+    &[style*="width: 0"] {
+        transform: translateX(-100%);
+        
+        .left-panel-content {
+            visibility: hidden;  // Hide content when collapsed
+        }
+    }
 
     .drag-handle {
         width: 10px;
         cursor: ew-resize;
-        position: absolute;
+        // position: absolute;
         top: 0;
         right: 0;
         height: 100%;
         background-color: color.$secondary-background;
+        z-index: inherit;
 
         &:hover{
             .drag-handle-visible{
@@ -48,7 +64,8 @@
             right: 0;
             right: 0;
             height:100%;
-            width: 2px;
+            width: 1.5px;
+            background-color: color.$divider-color;
 
             &:hover{
                 background-color: color.$secondary-background-hover-medium;
@@ -56,8 +73,10 @@
         }
       }
 
-      .left-pannel-content{
-        overflow: hidden;
+      .left-panel-content{
+        overflow: visible;
+        position: relative;
+        min-width: 0;
         // padding: 20px;
       }
 }
@@ -74,3 +93,37 @@ body.resizing {
 }
 
 
+/// INTERIOR
+.left-panel-content{
+    .panel-fn-buttons-wrapper{
+        padding:8px 10px; 
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-width: 0;
+        position: relative;
+
+        .left{
+            font-family: font.$geist-regular;
+            padding-left: 8px;
+            cursor: default;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-shrink: 1;
+
+            .heading{
+                font-size: 15px;
+                font-weight: 500;
+            }
+
+        }
+        .right{
+            display: flex;
+            justify-content: flex-end;
+            flex-shrink: 0;
+            max-width: 100%;
+            overflow: hidden;
+        }
+    }
+}

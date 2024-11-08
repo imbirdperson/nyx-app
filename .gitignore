@@ -22,3 +22,42 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Compiled source
+/target/
+
+# Rust/Cargo specific files
+**/*.rs.bk
+Cargo.lock
+
+# Generated files from `cargo doc`
+/doc/
+
+# Binaries produced by `rustc` and `cargo`
+*.exe
+*.out
+*.dSYM
+*.stackdump
+
+# Backup files
+*.bak
+*.swp
+
+# IDEs and Editors
+# JetBrains
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# MacOS
+.DS_Store
+
+# Linux
+*.un~

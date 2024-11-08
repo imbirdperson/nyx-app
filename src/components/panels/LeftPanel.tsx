@@ -1,6 +1,12 @@
-import React, { ReactNode} from "react";
-import { Sidebar } from '@geist-ui/icons';
+import React, { ReactNode, useEffect, useState} from "react";
+import { Sidebar, Plus, Home } from '@geist-ui/icons';
 import { useLeftPanelStore } from "../../store/LeftPanelStore";
+import IconButton from "../elements/IconButton";
+import { ICON_BUTTON_SIZE } from "../Constants";
+import { invoke  } from "@tauri-apps/api/core";
+import * as path from '@tauri-apps/api/path';
+import {readFile, readDir, BaseDirectory } from '@tauri-apps/plugin-fs';
+
 
 
 type LeftPanelProps = {
@@ -49,19 +55,66 @@ const LeftPanel: React.FC<LeftPanelProps> = ({children}) => {
       window.removeEventListener('mouseup', handleMouseUp);
     };
     }, [isDragging]);
+
+    const [imagePath, setImagePath] = useState<string>("");
+    const [imageUrl, setImageUrl] = useState<string>("");
+
+    const handleGetImagePath = async () => {
+        try {
+            const path = await invoke("image_path") as string;
+            setImagePath(path);
+            
+            // Read the image file as binary data
+            const imageData = await readFile(path);
+            
+            // Create a blob from the Uint8Array
+            const blob = new Blob([imageData], { type: 'image/jpeg' }); // Adjust mime type if needed
+            
+            // Create object URL
+            const url = URL.createObjectURL(blob);
+            console.log(url);
+            setImageUrl(url);
+        } catch (err) {
+            console.error('Error loading image:', err);
+        }
+    }
+
+    useEffect(() => {
+        return () => {
+            if (imageUrl) {
+                URL.revokeObjectURL(imageUrl);
+            }
+        };
+    }, [imageUrl]);
    
 
     return (
-        <div className={`left-pannel-wrapper`}
+        <div className={`left-panel-wrapper`}
         style={{ width: leftPanelWidth ? `${leftPanelWidth}px` : '0'}}>
-            <div className="left-pannel-content">
-                <LeftPanelToggleButton/>
+            <div className="left-panel-content">
+                <LeftPanelFnButton/>
                 {children}
+                {imageUrl && 
+                    <>
+                    <img className="thumbnail" src={imageUrl} alt="thumbnail" />
+                    <img className="thumbnail" src={imageUrl} alt="thumbnail" />
+                    <img className="thumbnail" src={imageUrl} alt="thumbnail" />
+                    <img className="thumbnail" src={imageUrl} alt="thumbnail" />
+                    <img className="thumbnail" src={imageUrl} alt="thumbnail" />
+                    <img className="thumbnail" src={imageUrl} alt="thumbnail" />
+                    <img className="thumbnail" src={imageUrl} alt="thumbnail" />
+                    <img className="thumbnail" src={imageUrl} alt="thumbnail" />
+                    <img className="thumbnail" src={imageUrl} alt="thumbnail" />
+                    </>
+                }
+                <button onClick={handleGetImagePath}>Get Image Path</button>
             </div>
 
         <div className="drag-handle" onMouseDown={handleMouseDown}>
             <div className="drag-handle-visible"/>
+
         </div>
+
         </div>
     )
 }
@@ -74,8 +127,68 @@ interface LeftPanelFnButtonsProps{
 }
 
 const LeftPanelFnButton: React.FC<LeftPanelFnButtonsProps> = () => {
+
+    let [basePath, setBasePath] = useState<string>("");
+    const [files, setFiles] = useState<{ name: string; path: string }[]>([]);
+
+    // const handleCreateFolder = () => {
+    //     console.log("Creating folder");
+    //     invoke("create_folder")
+    //         .then((msg) => console.log(msg))
+    //         .catch((err) => console.error(err));
+        
+    const handleCreateFolder = () => {
+        console.log("Creating folder");
+
+    };
+
+    useEffect(()=> {
+        const getHomePath = async () => {
+            const home = await path.homeDir();
+            const final_path = await path.join(home, "dev_root/pink");
+            console.log(final_path)
+            setBasePath(final_path);
+        }
+        getHomePath();
+    }, []);
+
+    useEffect(() => {
+        const loadFiles = async () => {
+            try {
+                // First check if basePath is not empty
+                if (!basePath) {
+                    console.log("Base path is empty, waiting...");
+                    return;
+                }
+
+                // Try to read directory
+                const contents = await readDir(basePath);
+                console.log("Successfully read directory:", basePath);
+                console.log("Contents:", contents);
+            } catch (err) {
+                console.error("Error reading directory:", {
+                    path: basePath,
+                    error: err
+                });
+            }
+        };
+        
+        loadFiles();
+    }, [basePath]);
+
     return (
-        <></>
+        <div className="panel-fn-buttons-wrapper">
+            <div className="left">
+                <div className="heading">
+                    Roots
+                </div>
+            </div>
+            <div className="right">
+                <IconButton tooltipText="Add Root" onClick={handleCreateFolder}><Plus color="#fff" size={ICON_BUTTON_SIZE}/></IconButton>
+                <IconButton tooltipText="Home"><Home color="#fff" size={ICON_BUTTON_SIZE}/></IconButton>
+                <LeftPanelToggleButton/>
+            </div>
+        </div>
     );
 };
 
@@ -95,10 +208,9 @@ const LeftPanelToggleButton: React.FC<LeftPanelToggleProps> = () => {
     };
 
     return (
-      <div className="sidebar">
-        <button className="icon-button" onClick={handleClick}>
-            <Sidebar color="#fff" size={17}/>
-        </button>
-      </div>
+        <IconButton tooltipText={"Sidebar"} onClick={handleClick}>
+            <Sidebar color="#fff" size={ICON_BUTTON_SIZE}/>
+        </IconButton>
     );
   };
+

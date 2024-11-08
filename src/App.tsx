@@ -1,7 +1,14 @@
-import { invoke } from "@tauri-apps/api/core";
-
+import React from "react";
 import MainWindow from "./components/panels/MainPanel";
 import LeftPanel from "./components/panels/LeftPanel";
+import { readFile } from '@tauri-apps/plugin-fs';
+import * as path from '@tauri-apps/api/path';
+import { invoke } from "@tauri-apps/api/core";
+
+import { readDir, exists, BaseDirectory } from '@tauri-apps/plugin-fs';
+
+// const home = await path.homeDir();
+// const contents = await readFile(await path.join(home, 'dev_root/pink/thumbnail.png'));
 
 function App() {
 
@@ -9,19 +16,18 @@ function App() {
     <main className="container">
       <LeftPanel>
         <div className="left-panel-content">
-          <h3>Today</h3>
-          <ul>
-            <li>Resizable CSS Grid Component</li>
-            <li>Import SCSS in Svelte</li>
-            <li>SurrealDB Rust Database</li>
-          </ul>
+
         </div>
       </LeftPanel>
       <MainWindow>
-        Main event
+         <div className="">
+          <img src="/Users/deepakrajan/dev_root/pink/thumbnail.png" alt="thumbnail" />
+         </div>
       </MainWindow>
     </main>
   );
 }
 
 export default App;
+
+
