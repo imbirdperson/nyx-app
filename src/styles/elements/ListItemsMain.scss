@@ -24,16 +24,16 @@
         text-align: left;
         border-radius: 4px;
 
-        transition: background-color 0.2s ease-in-out;
+        transition: background-color 0.1s ease-in-out;
 
         &:hover {
             background-color: color.$secondary-background-hover-medium;
-            transition: background-color 0.2s ease-in-out;
+            transition: background-color 0.1s ease-in-out;
         }
 
         &.selected {
             background-color: #BC4A4E;
-            transition: background-color 0.2s ease-in-out;
+            transition: background-color 0.1s ease-in-out;
 
             &:hover {
                 background-color: #c65f63; // Slightly lighter blue on hover when selected

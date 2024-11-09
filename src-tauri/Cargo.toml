@@ -33,3 +33,4 @@ surrealdb = { workspace = true, features = ["kv-rocksdb"] }
 
 # internal dependencies
 nix-core = { path = "../crates/nix-core" }
+tauri-plugin-dialog = "2"

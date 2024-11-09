@@ -1,0 +1,108 @@
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.dialog-content {
+    background-color: #1e1e1e;
+    padding: 24px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; // Add this to include padding in width calculation
+
+    .form-group {
+        margin-bottom: 16px;
+        width: 100%;         // Ensure full width
+        box-sizing: border-box; // Include padding in width calculation
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #333;
+            background-color: #2d2d2d;
+            color: #fff;
+            border-radius: 4px;
+            box-sizing: border-box; // Include padding in width calculation
+
+            &:focus {
+                outline: none;
+                border-color: #0066cc;
+            }
+        }
+    } 
+
+    .path-selector {
+        display: flex;
+        gap: 8px;
+
+        input {
+            flex: 1;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #444;
+            }
+        }
+    }
+
+    .dialog-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-top: 24px;
+
+        button {
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+
+            &:first-child {
+                background-color: #333;
+                color: #fff;
+
+                &:hover {
+                    background-color: #444;
+                }
+            }
+
+            &:last-child {
+                background-color: #0066cc;
+                color: #fff;
+
+                &:hover {
+                    background-color: #0077ee;
+                }
+
+                &:disabled {
+                    background-color: #333;
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+}

@@ -1,6 +1,5 @@
 use std::sync::Arc;
 use std::path::{Path, PathBuf};
-use surrealdb::engine::local::RocksDb;
 use surrealdb::Surreal;
 use surrealdb::RecordId;
 use crate::db::error::{DatabaseError, Result, RootError};
@@ -83,5 +82,23 @@ impl RootService {
     pub async fn get_all_roots(&self) -> Result<Vec<Root>> {
         let roots: Vec<Root> = self.db.select("roots").await.map_err(DatabaseError::SurrealError)?;
         Ok(roots)
+    }
+
+    pub async fn segment_exists(&self, root_id: &str, segment: &str) -> Result<bool>{
+        let record_id = RecordId::from(("roots", root_id));
+        let root: Option<Root> = self.db.select(record_id).await.map_err(DatabaseError::SurrealError)?;
+        Ok(root.unwrap().is_segment(segment))
+    }
+
+    pub async fn segments(&self, root_id: &str) -> Result<Vec<String>>{
+        let record_id = RecordId::from(("roots", root_id));
+        let root: Option<Root> = self.db.select(record_id).await.map_err(DatabaseError::SurrealError)?;
+        Ok(root.unwrap().segments)
+    }
+
+    pub async fn add_segment(&self, root_id: &str, segment: &str){
+        let record_id = RecordId::from(("roots", root_id));
+        // let root: Option<Root> = self.db.select(record_id).await.map_err(DatabaseError::SurrealError)?;
+        // Ok(root)
     }
 }

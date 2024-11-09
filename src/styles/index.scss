@@ -4,7 +4,8 @@
 @use "./fonts.scss" as font;
 @use "./elements.scss";
 @use "./elements/ListItemsMain.scss";
-
+@use "./elements/DialogWindow.scss";
+@use "./elements/Notification.scss";
 * {
     padding: 0px;
     margin: 0px;

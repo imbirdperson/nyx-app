@@ -12,15 +12,19 @@ pub struct Root{
     #[serde(with="path_serializer")]
     pub path: PathBuf,
     pub created_at: DateTime<Utc>,
+    pub root_type: RootType,
+    pub segments: Vec<String>,
 }
 
 impl Root {
     pub fn new(name: String, path: impl Into<PathBuf>) -> Self {
         Self {
             id: None,
-            name,
+            name: name.to_lowercase().replace(" ", "_"),
             path: path.into(),
             created_at: Utc::now(),
+            segments: Vec::new(),
+            root_type: RootType::Local,
         }
     }
 
@@ -39,6 +43,14 @@ impl Root {
     pub fn to_record_id(id: &str) -> RecordId {
         RecordId::from((Self::table(), id))
     }
+
+    pub fn is_segment(&self, segment: &str) -> bool{
+        self.segments.contains(&segment.to_string())
+    }
+
+    pub fn add_segment(&mut self, segment: &str){
+        self.segments.push(segment.to_string());
+    }   
 
     // Helper methods for path manipulation
     pub fn join_path(&self, path: impl AsRef<Path>) -> PathBuf {
@@ -80,4 +92,11 @@ mod path_serializer{
         let s = String::deserialize(deserializer)?;
         Ok(PathBuf::from(s))
     }
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub enum RootType{
+    Local,
+    Cloud,
+    Remote
 }

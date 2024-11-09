@@ -4,9 +4,9 @@ import { useLeftPanelStore } from "../../store/LeftPanelStore";
 import IconButton from "../elements/IconButton";
 import { ICON_BUTTON_SIZE } from "../Constants";
 import { invoke  } from "@tauri-apps/api/core";
-import * as path from '@tauri-apps/api/path';
 import {readFile, readDir } from '@tauri-apps/plugin-fs';
 import { useRootStore } from "../../store/RootStore";
+import CreateRootDialog from "../elements/DialogWindow";
 
 
 
@@ -148,26 +148,19 @@ const LeftPanelFnButton: React.FC<LeftPanelFnButtonsProps> = () => {
         loadRoots();
     }
 
+    // Open dialog to create root
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+    const handleCreateRootDialog = () => {
+        setIsDialogOpen(true);
+    }
+
     // const handleCreateFolder = () => {
     //     console.log("Creating folder");
     //     invoke("create_folder")
     //         .then((msg) => console.log(msg))
     //         .catch((err) => console.error(err));
         
-    const handleCreateFolder = () => {
-        console.log("Creating folder");
-
-    };
-
-    useEffect(()=> {
-        const getHomePath = async () => {
-            const home = await path.homeDir();
-            const final_path = await path.join(home, "dev_root/pink");
-            console.log(final_path)
-            setBasePath(final_path);
-        }
-        getHomePath();
-    }, []);
 
     useEffect(() => {
         const loadFiles = async () => {
@@ -201,11 +194,15 @@ const LeftPanelFnButton: React.FC<LeftPanelFnButtonsProps> = () => {
                 </div>
             </div>
             <div className="right">
-                <IconButton tooltipText="Add Root" onClick={handleCreateFolder}><Plus color="#fff" size={ICON_BUTTON_SIZE}/></IconButton>
+                <IconButton tooltipText="Add Root" onClick={handleCreateRootDialog}><Plus color="#fff" size={ICON_BUTTON_SIZE}/></IconButton>
                 <IconButton tooltipText="Refresh" onClick={handleLoadRoots}><RefreshCcw color="#fff" size={ICON_BUTTON_SIZE}/></IconButton>
                 <IconButton tooltipText="Home"><Home color="#fff" size={ICON_BUTTON_SIZE}/></IconButton>
                 <LeftPanelToggleButton/>
             </div>
+            <CreateRootDialog 
+                isOpen={isDialogOpen} 
+                onClose={() => setIsDialogOpen(false)} 
+            />
         </div>
     );
 };

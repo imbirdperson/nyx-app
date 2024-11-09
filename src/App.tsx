@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MainWindow from "./components/panels/MainPanel";
 import LeftPanel from "./components/panels/LeftPanel";
-
+import NotificationContainer from "./components/elements/Notification";
 import RootList from "./components/items/RootList";
 
 // const home = await path.homeDir();
@@ -10,6 +10,7 @@ import RootList from "./components/items/RootList";
 function App() {
 
   return (
+    <>
     <main className="container">
       <LeftPanel>
         <div className="left-panel-content">
@@ -21,7 +22,9 @@ function App() {
           {/* <CreateRoot/> */}
          </div>
       </MainWindow>
-    </main>
+      </main>
+      <NotificationContainer />
+    </>
   );
 }
 
