@@ -32,6 +32,7 @@
     position: relative;
     transition: transform 0.1s ease-in; 
     z-index: 2;
+    padding:10px;
 
     // Add transform when width is 0
     &[style*="width: 0"] {
@@ -96,7 +97,8 @@ body.resizing {
 /// INTERIOR
 .left-panel-content{
     .panel-fn-buttons-wrapper{
-        padding:8px 10px; 
+        // padding:8px 10px; 
+        padding-bottom: 8px;
         display: flex;
         align-items: center;
         justify-content: space-between;

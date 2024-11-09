@@ -1,14 +1,22 @@
 [workspace]
-members = [ "crates/nyx-core","src-tauri"]
+members = [ "crates/nix-core", "src-tauri"]
 resolver = "2"
 
 [workspace.package]
-name = "nyx-app"
+name = "nix-app"
 version = "0.1.0"
 edition = "2021"
 
 [workspace.dependencies]
+# internal
+nix_core = { path = "crates/nix-core" }
+
+# external
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 axum = "0.7.7"
 tokio = {version = "1.41.1", features = ["full"] }
+surrealdb = {version = "2.0.4", features = ["kv-rocksdb"]}
+thiserror = "2.0.1"
+chrono = { version = "0.4", features = ["serde"] }
+nanoid = "0.4"

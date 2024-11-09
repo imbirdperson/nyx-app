@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Nyx",
+  "productName": "NiX",
   "version": "0.1.0",
-  "identifier": "com.nyx-app.app",
+  "identifier": "com.nix-app.app",
   "build": {
     "beforeDevCommand": "npm run dev",
     "devUrl": "http://localhost:1420",
@@ -14,7 +14,7 @@
     "macOSPrivateApi": true,
     "windows": [
       {
-        "title": "Nyx",
+        "title": "NiX",
         "width": 800,
         "height": 600,
         "maximized": true,

@@ -1,0 +1,56 @@
+@use "../globals.scss" as globals;
+@use "../colors.scss" as color;
+
+.list-items-main-wrapper{
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: color.$text-color;
+    padding-left: 10px;
+
+    .list-item-button {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px;
+        padding-right: 0px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        width: 100%;
+        text-align: left;
+        border-radius: 4px;
+
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover {
+            background-color: color.$secondary-background-hover-medium;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        &.selected {
+            background-color: #BC4A4E;
+            transition: background-color 0.2s ease-in-out;
+
+            &:hover {
+                background-color: #c65f63; // Slightly lighter blue on hover when selected
+            }
+        }
+    }
+
+
+    .item-icon {
+        display: flex;
+        align-items: center;
+}
+
+    .item-label {
+        color: #fff;
+        text-transform: capitalize;
+        font-size: 13px;
+    }
+}
+

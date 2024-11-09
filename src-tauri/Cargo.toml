@@ -1,5 +1,5 @@
 [package]
-name = "nyx-app"
+name = "nix-app"
 version = "0.1.0"
 description = "A Tauri App"
 authors = ["you"]
@@ -27,4 +27,9 @@ tauri-plugin-fs = "2"
 serde = { workspace = true, features = ["derive"] }
 serde_json = { workspace = true }
 axum = { workspace = true }
-tokio = { workspace = true, features = ["full"] }
+tokio = { workspace = true, features = ["full", "macros", "rt-multi-thread"] }
+surrealdb = { workspace = true, features = ["kv-rocksdb"] }
+
+
+# internal dependencies
+nix-core = { path = "../crates/nix-core" }

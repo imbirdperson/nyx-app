@@ -3,6 +3,7 @@
 @use "./panels.scss";
 @use "./fonts.scss" as font;
 @use "./elements.scss";
+@use "./elements/ListItemsMain.scss";
 
 * {
     padding: 0px;

@@ -1,11 +1,12 @@
 import React, { ReactNode, useEffect, useState} from "react";
-import { Sidebar, Plus, Home } from '@geist-ui/icons';
+import { Sidebar, Plus, Home, RefreshCcw } from '@geist-ui/icons';
 import { useLeftPanelStore } from "../../store/LeftPanelStore";
 import IconButton from "../elements/IconButton";
 import { ICON_BUTTON_SIZE } from "../Constants";
 import { invoke  } from "@tauri-apps/api/core";
 import * as path from '@tauri-apps/api/path';
-import {readFile, readDir, BaseDirectory } from '@tauri-apps/plugin-fs';
+import {readFile, readDir } from '@tauri-apps/plugin-fs';
+import { useRootStore } from "../../store/RootStore";
 
 
 
@@ -93,8 +94,19 @@ const LeftPanel: React.FC<LeftPanelProps> = ({children}) => {
         style={{ width: leftPanelWidth ? `${leftPanelWidth}px` : '0'}}>
             <div className="left-panel-content">
                 <LeftPanelFnButton/>
+{/* 
+                <ListItemsMain 
+                    items={[
+                        { id: '1', icon: <Home color="#fff"/>, label: 'Home' },
+                        { id: '2', icon: <Home color="#fff"/>, label: 'Settings' },
+                        { id: '3', icon: <Home color="#fff"/>, label: 'Profile' },
+                    ]}
+                    onItemSelect={(id) => console.log('Selected:', id)}
+                /> */}
+
+                
                 {children}
-                {imageUrl && 
+                {/* {imageUrl && 
                     <>
                     <img className="thumbnail" src={imageUrl} alt="thumbnail" />
                     <img className="thumbnail" src={imageUrl} alt="thumbnail" />
@@ -107,7 +119,7 @@ const LeftPanel: React.FC<LeftPanelProps> = ({children}) => {
                     <img className="thumbnail" src={imageUrl} alt="thumbnail" />
                     </>
                 }
-                <button onClick={handleGetImagePath}>Get Image Path</button>
+                <button onClick={handleGetImagePath}>Get Image Path</button> */}
             </div>
 
         <div className="drag-handle" onMouseDown={handleMouseDown}>
@@ -130,6 +142,11 @@ const LeftPanelFnButton: React.FC<LeftPanelFnButtonsProps> = () => {
 
     let [basePath, setBasePath] = useState<string>("");
     const [files, setFiles] = useState<{ name: string; path: string }[]>([]);
+    const {loadRoots} = useRootStore();
+
+    const handleLoadRoots = () => {
+        loadRoots();
+    }
 
     // const handleCreateFolder = () => {
     //     console.log("Creating folder");
@@ -185,6 +202,7 @@ const LeftPanelFnButton: React.FC<LeftPanelFnButtonsProps> = () => {
             </div>
             <div className="right">
                 <IconButton tooltipText="Add Root" onClick={handleCreateFolder}><Plus color="#fff" size={ICON_BUTTON_SIZE}/></IconButton>
+                <IconButton tooltipText="Refresh" onClick={handleLoadRoots}><RefreshCcw color="#fff" size={ICON_BUTTON_SIZE}/></IconButton>
                 <IconButton tooltipText="Home"><Home color="#fff" size={ICON_BUTTON_SIZE}/></IconButton>
                 <LeftPanelToggleButton/>
             </div>

@@ -16,4 +16,4 @@ export const useLeftPanelStore = create<LeftPanelState>((set) => ({
     setIsDragging: (dragging) => set({ isDragging: dragging }),
     toggleLeftPanel: () =>
       set((state) => ({ leftPanelWidth: state.leftPanelWidth === 0 ? 250 : 0 })),
-  }));
+}));
