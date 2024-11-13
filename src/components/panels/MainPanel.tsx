@@ -5,6 +5,7 @@ import IconButton from "../elements/IconButton";
 import { ICON_BUTTON_SIZE } from "../Constants";
 import { useNodeStore } from "../../store/NodeStore";
 import { useRootStore } from "../../store/RootStore";
+import { useNotificationStore } from "../../store/NotificationStore";
 
 type MainPanelProps = {
     children: ReactNode;
@@ -45,18 +46,28 @@ const NodeList: React.FC = () => {
     const [newNode, setNewNode] = useState(''); 
     const { createNode, loadNodes, nodes } = useNodeStore();
     const { selectedRootId } = useRootStore();
+    const { addNotification } = useNotificationStore();
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleCreateNodeSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         console.log('selectedRoot', selectedRootId);
         if (!selectedRootId) return; // Add early return if no root is selected
+
         try {
-            await createNode({ name: newNode, path: '/', root_id: selectedRootId });
+            await createNode({
+                name: newNode,
+                path: '/',
+                root_id: selectedRootId,
+                node_type: 'Node::Default' });
             setNewNode('')
+            // load nodes after creating a new node
             await loadNodes(selectedRootId);
+            addNotification('Node created successfully', 'success');
+
             console.log('Node created successfully');
         } catch (error) {
             console.error('Failed to create node:', error);
+            addNotification(error, "error");
         } 
     }
 
@@ -66,6 +77,8 @@ const NodeList: React.FC = () => {
             await loadNodes(selectedRootId);
             console.log('Nodes:', nodes);
             console.log('Nodes loaded successfully');
+        }else{
+            addNotification('No root selected', 'warning');
         }
     }
 
@@ -79,8 +92,11 @@ const NodeList: React.FC = () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="New Node" />
+            <form onSubmit={handleCreateNodeSubmit}>
+                <input type="text"
+                    value={newNode}
+                    onChange={(e) => setNewNode(e.target.value)}
+                 placeholder="New Node" />
                 <button type="submit">Add</button>
             </form>
             <div>

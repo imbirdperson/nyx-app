@@ -4,7 +4,7 @@ use surrealdb::RecordId;
 use std::path::{Path, PathBuf};
 
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Root{
     #[serde(skip_serializing_if = "Option::is_none")]
     pub id: Option<RecordId>,
@@ -13,7 +13,7 @@ pub struct Root{
     pub path: PathBuf,
     pub created_at: DateTime<Utc>,
     pub root_type: RootType,
-    pub segments: Vec<String>,
+    pub segments: Vec<RecordId>,
 }
 
 impl Root {
@@ -45,12 +45,12 @@ impl Root {
     }
 
     pub fn is_segment(&self, segment: &str) -> bool{
-        self.segments.contains(&segment.to_string())
+        self.segments.contains(&Self::to_record_id(segment))
     }
 
-    pub fn add_segment(&mut self, segment: &str){
-        self.segments.push(segment.to_string());
-    }   
+    // pub fn add_segment(&mut self, segment: &str){
+    //     self.segments.push(segment.to_string());
+    // }   
 
     // Helper methods for path manipulation
     pub fn join_path(&self, path: impl AsRef<Path>) -> PathBuf {
@@ -94,7 +94,7 @@ mod path_serializer{
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub enum RootType{
     Local,
     Cloud,

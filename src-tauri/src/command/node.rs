@@ -1,15 +1,18 @@
 use crate::response::ApiResponse;
 use crate::AppState;
 use nix_core::{
-    models::node::Node,
+    models::node::{Node, NodeType},
+    models::root::Root,
     services::node_service::NodeService,
+    services::root_service::RootService,
 };
+use surrealdb::RecordId;
 use serde::Deserialize;
 use tauri::State;
 #[derive(Debug, Deserialize)]
 pub struct CreateNodeRequest {
     name: String,
-    path: String,
+    node_type: String,
     root_id: String,
 }
 
@@ -17,8 +20,15 @@ pub struct CreateNodeRequest {
 #[tauri::command]
 pub async fn create_node(state: State<'_, AppState>, request: CreateNodeRequest) -> Result<ApiResponse<Node>, String>{
     let node_service = NodeService::new(&state.db);
+    let root_service = RootService::new(&state.db);
 
-    match node_service.create_node(&request.name, &request.path, &request.root_id).await{
+    let node_type = NodeType::from_str(&request.node_type);
+
+    let root: Option<Root> = root_service.get_root(&request.root_id).await;
+    let root = root.ok_or_else(|| "Root not found".to_string())?;
+
+
+    match node_service.create_node(&request.name, node_type, root).await{
         Ok(node) => {
             println!("Node created successfully: {:?}", node);
             Ok(ApiResponse::success(node))

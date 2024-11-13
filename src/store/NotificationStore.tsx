@@ -10,7 +10,7 @@ interface Notification {
 
 interface NotificationStore {
     notifications: Notification[];
-    addNotification: (message: string, type: NotificationType) => void;
+    addNotification: (message: unknown, type: NotificationType) => void;
     removeNotification: (id: string) => void;
 }
 
@@ -18,9 +18,14 @@ export const useNotificationStore = create<NotificationStore>((set) => ({
     notifications: [],
     addNotification: (message, type) => {
         const id = Date.now().toString();
+
+        const formattedMessage = message instanceof Error ? message.message : 
+            typeof message === 'string' ? message : 'An error occurred';
+
         set((state) => ({
-            notifications: [...state.notifications, { id, message, type }],
-        }));
+            notifications: [...state.notifications, { id, message: formattedMessage, type }],
+        }
+        ));
         
         // Auto remove after 2 seconds
         setTimeout(() => {

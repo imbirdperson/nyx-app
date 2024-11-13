@@ -8,14 +8,20 @@ pub enum DatabaseError{
     #[error("Record not found")]
     RecordNotFound,
 
-    #[error("Not found")]
-    NotFound,
+    #[error("Not found: {0}")]
+    NotFound(String),
 
     #[error("Invalid record ID: {0}")]
     InvalidId(String),
 
     #[error("Invalid data: {0}")]
     InvalidData(String),
+
+    #[error("Creation error: {0}")]
+    CreationError(String),
+
+    #[error("Update error: {0}")]
+    UpdateError(String),
 }
 
 pub type Result<T> = std::result::Result<T, DatabaseError>;

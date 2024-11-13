@@ -29,6 +29,7 @@ interface NewNode {
     name: string;
     path: string;
     root_id: string;
+    node_type:string;
 }
 
 interface ApiResponse<T> {

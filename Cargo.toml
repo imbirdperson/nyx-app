@@ -1,5 +1,5 @@
 [workspace]
-members = [ "crates/nix-core", "src-tauri"]
+members = [ "crates/nix-core", "src-tauri", "server/nix-server" ]
 resolver = "2"
 
 [workspace.package]
